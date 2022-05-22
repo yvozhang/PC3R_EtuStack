@@ -188,22 +188,12 @@
             window.location.href="http://localhost:8080/WebProjet/post.html?titre="+title;
         }
 
-
-        // function showLocation(){
-        //     console.log("show val="+ showval);
-        //     document.getElementById('nameCategory').innerHTML=showval;
-        // }
-        //document.getElementById('nameCategory').innerHTML=showval;
-
         //load les posts de category que le user a choisi
         $(document).ready(function () {
             $('#selectC a').on('click', function () {
                 $('#allPosts').remove();
                 $('.allGroups').remove();
                 var idCategory= ($(this).text());
-                //window.location.href="http://localhost:8080/WebProjet/category.html?category="+idCategory;
-                //document.getElementById('nameCategory').innerHTML=idCategory;
-
                 let url = 'ServletCategory?category='+idCategory;
                 console.log("fetch a "+url);
                 let headers = new Headers();
@@ -282,10 +272,6 @@
             var htmlBtnCreate = '<button type="button" class="btn btn-create-post" onclick="createPost()">CreatePost</button>';
             $(".div-createPost").append(htmlBtnCreate);
         }else{
-            /*
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            */
             var html = '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
             $(".d-flex").append(html);
         }

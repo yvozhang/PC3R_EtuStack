@@ -69,83 +69,6 @@
             var html = '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
             $(".d-flex").append(html);
         }
-
-
-        // var thisURL = document.URL;      
-        // var  getval =thisURL.split('?')[1];    
-        // var showval= getval.split("=")[1];   
-
-       
-
-        // let url = 'ServletPost?titre='+showval;
-        // console.log("fetch a "+url);
-        // let headers = new Headers();
-        // headers.set('Accept', 'application/json');
-
-        // //afficher post 
-        // fetch(url, {method : "post", headers, mode : "same-origin"})
-        //         .then(function(response){
-        //             response.json()
-		// 		    .then(function(rjson){
-        //                 console.log(rjson);
-        //                 var html = '<div class="the-post"><h4 class="titre-post">';
-        //                     html += rjson.titre;
-        //                     console.log("post.html get post's title:"+rjson.titre);
-        //                     html +='</h4><p class="contenue-post p-5">';
-        //                     html += rjson.contenu;
-        //                     html +='</p><p class= "buttom-post pt-5">Post à ';
-        //                     html +=rjson.date;
-        //                     html +=' by ';
-        //                     html += rjson.username;
-        //                     html += '</p></div>';
-
-        //                     $(".col-posts").append(html);
-		// 		    })
-		// 		    .catch(function(error){console.log("Authentification Parsing: "+error.message)});
-        //         })
-        //         .catch(function(error){
-        //             console.log("Authentification Fetching: "+error.message);
-        //         }) 
-
-        // console.log("in post.html, i got titre of post: "+showval);
-
-        // let urlC = 'ServletCommentaire?titre='+showval;
-        // console.log("fetch a "+url);
-        // let headersC = new Headers();
-        // headersC.set('Accept', 'application/json');
-
-
-        // //afficher les commentaires
-        // fetch(urlC, {method : "post", headersC, mode : "same-origin"})
-        //         .then(function(response){
-        //             response.json()
-		// 		    .then(function(rjson){
-        //                 console.log("for the part Commentaire, i got rjson:"+rjson);
-        //                 for(post in rjson){
-        //                     if(rjson!=null){
-        //                         var html = '<div class="the-post"><p class="contenue-post">';
-        //                         html += rjson[post].contenu;
-        //                         console.log("post.html get commentaire's contenue:"+rjson[post].contenu);
-        //                         html +='</p><p class= "buttom-post pt-5">Post à ';
-        //                         html +=rjson[post].date;
-        //                         html +=' by ';
-        //                         html += rjson[post].username;
-        //                         html += '</p><p align="right">';
-        //                         html += rjson[post].nb_likes;
-        //                         html += '</p></div>';
-        //                         $(".col-comentaire").append(html);
-        //                     }else{
-
-        //                     }
-                            
-        //                 }
-                        
-		// 		    })
-		// 		    .catch(function(error){console.log("Authentification Parsing: "+error.message)});
-        //         })
-        //         .catch(function(error){
-        //             console.log("Authentification Fetching: "+error.message);
-        //         })
         
         // jump to the page Login
         function gotoLogin(){
@@ -269,8 +192,6 @@
                 console.log("publishPost."); 
                 publishGroup(event)} );
     </script>
-
-
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

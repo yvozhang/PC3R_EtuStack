@@ -18,7 +18,7 @@ import dao.Dao;
 import dao.UserDao;
 
 /**
- * Servlet implementation class ServletUsers
+ * Servlet implementation class ServletUser
  */
 @WebServlet("/ServletUser")
 public class ServletUser extends HttpServlet {

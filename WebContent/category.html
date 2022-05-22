@@ -58,16 +58,12 @@
     </nav>
     <script type="text/javascript">
         
-
         //load les posts du page de category
         var thisURL = document.URL;      
         var  getval =thisURL.split('?')[1];    
         var showval= getval.split("=")[1];   
 
         console.log("in category.html, i got category: "+showval);
-
-
-
 
         let url = 'ServletPost?category='+showval;
         console.log("fetch a "+url);
@@ -210,10 +206,6 @@
             var htmlBtnCreate = '<button type="button" class="btn btn-create-group" onclick="createGroupe()">CreateGroup</button>';
             $(".div-createGroup").append(htmlBtnCreate);
         }else{
-            /*
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            */
             var html = '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
             $(".d-flex").append(html);
         }
@@ -231,20 +223,10 @@
         }
 
         function showGroup(a){
-            // var title = a;
-            // console.log("in categor.html, transmettre:"+title);
-            // window.location.href="http://localhost:8080/WebProjet/post.html?titre="+title;
-
             var idGroupe= a;
             console.log("i want to jump to group.html with value:"+ idGroupe);
             window.location.href="http://localhost:8080/WebProjet/group.html?nameG=" + idGroupe;
         }
-
-        // function showLocation(){
-        //     console.log("show val="+ showval);
-        //     document.getElementById('nameCategory').innerHTML=showval;
-        // }
-        //document.getElementById('nameCategory').innerHTML=showval;
 
         //load les posts de category que le user a choisi
         $(document).ready(function () {
@@ -252,9 +234,6 @@
                 $('.allPosts').remove();
                 $('.allGroups').remove();
                 var idCategory= ($(this).text());
-                //window.location.href="http://localhost:8080/WebProjet/category.html?category="+idCategory;
-                //document.getElementById('nameCategory').innerHTML=idCategory;
-
                 let url = 'ServletPost?category='+idCategory;
                 console.log("fetch a "+url);
                 let headers = new Headers();
@@ -316,9 +295,6 @@
                 
             });
         });
-
-        
-
     </script>
 
     

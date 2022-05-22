@@ -69,10 +69,6 @@
                                                 console.log("rjson:" + rjson);
                                                 sessionStorage.setItem('user',rjson);
                                                 window.location.href="acceuil.html";
-                                                //console.log("sessionStorage:"+sessionStorage.getItem('user'));
-                                                /* entree(rjson) */
-                                                //document.body.innerHTML += "<h2 color=red> Recu ! </h2>"
-                                                
                                             })
                                             .catch(function(error){
                                                 console.log("Authentification Parsing: "+error.message)
@@ -88,10 +84,6 @@
                                             {event.preventDefault(); 
                                             console.log("Login!."); 
                                             authentification(event)} );
-
-
-
-
                                 function gotoInscription(){
                                     window.location.href="inscription.html";
                                 }

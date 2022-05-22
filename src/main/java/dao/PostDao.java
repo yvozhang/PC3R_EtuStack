@@ -14,6 +14,7 @@ import composant.Post;
 
 public class PostDao implements Dao<Post>{
 
+	//get post by id
 	@Override
 	public Post get(long id) {
 		Connection connection = DbConnection.getInstance();
@@ -47,7 +48,7 @@ public class PostDao implements Dao<Post>{
 		
 	}
 	
-	
+	//get post by title
 	public Post get(String titre) {
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
@@ -81,6 +82,7 @@ public class PostDao implements Dao<Post>{
 		
 	}
 	
+	//get post'id by title
 	public int getIdByPostTitre(String titrePost) {
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
@@ -106,6 +108,7 @@ public class PostDao implements Dao<Post>{
 		
 	}
 	
+	//get the posts which belong to the same category
 	public List<Post> getSelectedByCategory(String category) {
 		System.out.println("in getSelected() begin");
 		String sql = "SELECT * FROM posts where category = '"+category+"'";		
@@ -141,6 +144,7 @@ public class PostDao implements Dao<Post>{
 		return posts;
 	}
 	
+	//get all the posts of the group
 	public List<Post> getSelectedByGroup(String group) {
 		System.out.println("in getSelectedByGroup() begin");
 		String sql = "SELECT * FROM posts p, groupes g where nomG = '"+group+"' and p.idG=g.idG";				
@@ -175,9 +179,9 @@ public class PostDao implements Dao<Post>{
 		return posts;
 	}
 
+	//get all posts
 	@Override
 	public List<Post> getAll() {
-		//String sql = "SELECT `idU`,`pseudo`,`firstname`,`lastname`,`email`,`status` FROM `posts` WHERE idP <>"+ "null";		
 		System.out.println("in getAll() begin");
 		String sql = "SELECT * FROM posts";		
 		Connection connection = DbConnection.getInstance();
@@ -213,18 +217,13 @@ public class PostDao implements Dao<Post>{
 		return posts;
 	}
 
+	//add new post to the database
 	@Override
 	public void save(Post p) {
 		Date d=new Date();
 		SimpleDateFormat dateFormat=new SimpleDateFormat("YYYY-MM-dd");
 		p.setDate(dateFormat.format(d));
 		System.out.println("post date="+ p.getDate());
-
-		//HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-
-		//this.setIdU((int)session.getAttribute("idA")) ;
-		
-		//User user = new User();
 		String sql = "insert into posts(`titre`,`contenu`,`date`,`idU`,`idG`,`category`) values('"
 					+p.getTitre()+"','"+p.getContenu()+"','"+p.getDate()+"',"+p.getIdU()+","+p.getIdG()+",'"+p.getCategory()+"')";
 		

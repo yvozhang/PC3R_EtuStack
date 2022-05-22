@@ -22,7 +22,7 @@ import dao.PostDao;
 import dao.UserDao;
 
 /**
- * Servlet implementation class ServletCategory
+ * Servlet implementation class ServletPost
  */
 @WebServlet("/ServletPost")
 public class ServletPost extends HttpServlet {

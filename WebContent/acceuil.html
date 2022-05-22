@@ -62,19 +62,13 @@
         var sessionUser = sessionStorage.getItem('user');
         console.log("In page acceuil: sessionUser="+sessionUser);
         if(sessionUser != null){
-            var html = '<button class="btn btn-connexion" type="button" ">'+ sessionUser+'</button>';
-            $(".d-flex").append(html);
+            var html1 = '<button class="btn btn-connexion" type="button" ">'+ sessionUser+'</button>';
+            $(".d-flex").append(html1);
             console.log("sessionUser="+sessionUser)
         }else{
-            /*
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            */
-            var html = '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
-            $(".d-flex").append(html);
+            var  html2= '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
+            $(".d-flex").append(html2);
         }
-
-
 
         //load les posts du page de acceuil
         let url = 'ServletPost';
@@ -102,7 +96,6 @@
                             html += '</h6></div>';
                             $(".col-posts").append(html);
                 }
-						
 				})
 				.catch(function(error){console.log("Authentification Parsing: "+error.message)});
             })
@@ -119,11 +112,9 @@
         
         fetch(urlG, {method : "get", headersG, mode : "same-origin"})
             .then(function(response){
-                //var allPosts = JSON.parse(response);
                 response.json()
 				.then(function(rjson){
                     console.log(rjson);
-                    //var rjson = JSON.parse(allPosts);
                         for(group in rjson){
                             var html = '<div class="list-group" id="selectG" "><a href="#" id ="';    
                             html+=rjson[group].nom;
@@ -168,19 +159,9 @@
                 console.log("i want to jump to category.html with value:"+ idCategory);
                 window.location.href="http://localhost:8080/WebProjet/category.html?category="+idCategory;
              });
-        });
-
-        // $(document).ready(function () {
-        //     $('#selectG a').on('click', function () {
-        //         var idGroupe= ($(this).text());
-        //         console.log("i want to jump to group.html with value:"+ idGroupe);
-        //         window.location.href="http://localhost:8080/WebProjet/group.html?nameG=" + idGroupe;
-        //      });
-        // });
-
-        
-
+        }); 
     </script>
+
     <div class="p-5">
         <div class="container container-body">
             <div class="row head">
@@ -233,10 +214,6 @@
             window.location.href="http://localhost:8080/WebProjet/post.html?titre="+title;
         }
         function showGroup(a){
-            // var title = a;
-            // console.log("in categor.html, transmettre:"+title);
-            // window.location.href="http://localhost:8080/WebProjet/post.html?titre="+title;
-
             var idGroupe= a;
             console.log("i want to jump to group.html with value:"+ idGroupe);
             window.location.href="http://localhost:8080/WebProjet/group.html?nameG=" + idGroupe;
