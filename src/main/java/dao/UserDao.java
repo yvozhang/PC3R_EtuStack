@@ -12,6 +12,8 @@ import composant.User;
 
 public class UserDao implements Dao<User>{
 
+	
+	//get user by id
 	@Override
 	public User get(long id) {
 		Connection connection = DbConnection.getInstance();
@@ -43,6 +45,7 @@ public class UserDao implements Dao<User>{
 		
 	}
 	
+	//get user's id by username
 	public int getIdByUsername(String username) {
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
@@ -67,9 +70,9 @@ public class UserDao implements Dao<User>{
 			//DbConnection.close();
 		}
 		return idU;
-		
 	}
 	
+	//get user by email
 	public User get(String email) {
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
@@ -100,9 +103,10 @@ public class UserDao implements Dao<User>{
 		
 	}
 
+	//get all the users 
 	@Override
 	public List<User> getAll() {
-		String sql = "SELECT `idU`,`pseudo`,`firstname`,`lastname`,`email`,`status` FROM `users` WHERE idU <>"+ "null";		
+		String sql = "SELECT `idU`,`pseudo`,`firstname`,`lastname`,`email` FROM `users` WHERE idU <>"+ "null";		
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
 		
@@ -116,9 +120,7 @@ public class UserDao implements Dao<User>{
 				u = new User();
 				u.setIdU(rs.getInt("idU"));
 				u.setPseudo(rs.getString("pseudo"));
-
 				u.setEmail(rs.getString("email"));
-				u.setStatus(rs.getString("status"));
 				users.add(u);
 			}
 			//rs.close();
@@ -131,14 +133,14 @@ public class UserDao implements Dao<User>{
 		return users;
 	}
 
+	//add new user to database
 	@Override
 	public void save(User t) {
-		String sql = "INSERT INTO users (`pseudo`, `email`, `password`, `status`)"
+		String sql = "INSERT INTO users (`pseudo`, `email`, `password`)"
 				+ " VALUES"
 				+ " ('"+t.getPseudo()+"',"
 				+ "'"+t.getEmail()+"',"
-				+ "'"+t.getPassword()+"',"
-				+ "'"+t.getStatus()+"')";
+				+ "'"+t.getPassword()+"')";
 		System.out.println("in fonction save, before connection");
 		Connection connection = DbConnection.getInstance();
 		System.out.println("in fonction save, after connection");
@@ -170,6 +172,7 @@ public class UserDao implements Dao<User>{
 		
 	}
 	
+	//test if user exist or not
 	public boolean exist(User t) {
 		String sql = "select * from users where email= '"+ t.getEmail()+"'";
 		System.out.println("in exist(): email from html form "+ t.getEmail());
@@ -186,7 +189,6 @@ public class UserDao implements Dao<User>{
 				u.setPseudo(rs.getString("pseudo"));
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
-				u.setStatus(rs.getString("status"));
 			}
 			System.out.println("in exist(): "+ u.getEmail()+" and "+u.getPassword());
 

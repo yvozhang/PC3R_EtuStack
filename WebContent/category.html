@@ -50,8 +50,6 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control-search me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-search" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -83,9 +81,7 @@
                             console.log("html get post's title:"+rjson[post].titre);
                             html +='</h4></a><h4 class="list-group-item-text">';
                             html += rjson[post].contenu;
-                            html += '</h4><h6>';
-                            html += rjson[post].idU;
-                            html += '</h6></div>';
+                            html += '</h4></div>';
                             $(".col-posts").append(html);
                         }		
 				    })
@@ -201,7 +197,10 @@
         console.log("In page acceuil: sessionUser="+sessionUser);
         if(sessionUser != null){
             var html = '<button class="btn btn-connexion" type="button" >'+ sessionUser+'</button>';
+            html += '<button class="btn btn-deconnexion" type="button" onclick="deconnexion()">Déconnexion</button>';
+
             $(".d-flex").append(html);
+            
             console.log("sessionUser="+sessionUser)
             var htmlBtnCreate = '<button type="button" class="btn btn-create-group" onclick="createGroupe()">CreateGroup</button>';
             $(".div-createGroup").append(htmlBtnCreate);
@@ -215,6 +214,12 @@
                 history.go(-1);
             });
         });
+
+        // déconnexion
+        function deconnexion(){
+            sessionStorage.removeItem('user');
+            window.location.href="http://localhost:8080/WebProjet/acceuil.html"
+        }
 
         function showPost(a){
             var title = a;
@@ -252,9 +257,7 @@
                                     console.log("html get post's title:"+rjson[post].titre);
                                     html +='</h4></a><h4 class="list-group-item-text">';
                                     html += rjson[post].contenu;
-                                    html += '</h4><h6>';
-                                    html += rjson[post].idU;
-                                    html += '</h6></div>';
+                                    html += '</h4></div>'; 
                                     $(".col-posts").append(html);
                                 }		
                             })

@@ -50,8 +50,6 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control-search me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-search" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -63,6 +61,7 @@
         console.log("In page acceuil: sessionUser="+sessionUser);
         if(sessionUser != null){
             var html1 = '<button class="btn btn-connexion" type="button" ">'+ sessionUser+'</button>';
+            html1 += '<button class="btn btn-deconnexion" type="button" onclick="deconnexion()">Déconnexion</button>';
             $(".d-flex").append(html1);
             console.log("sessionUser="+sessionUser)
         }else{
@@ -91,9 +90,7 @@
                             console.log("html get post's title:"+rjson[post].titre);
                             html +='</h4></a><h4 class="list-group-item-text">';
                             html += rjson[post].contenu;
-                            html += '</h4><h6>';
-                            html += rjson[post].idU;
-                            html += '</h6></div>';
+                            html += '</h4></div>';
                             $(".col-posts").append(html);
                 }
 				})
@@ -138,6 +135,12 @@
             window.location.href="login.html";
         }
 
+        // déconnexion
+        function deconnexion(){
+            sessionStorage.removeItem('user');
+            window.location.href="http://localhost:8080/WebProjet/acceuil.html"
+        }
+
         // jump to the page Acceuil
         $(document).ready(function(){
             $('.navbar-brand').on('click',function(){
@@ -165,12 +168,20 @@
     <div class="p-5">
         <div class="container container-body">
             <div class="row head">
-                <div class="col-lg-6">
-                    <p class="welcome">EtuStack!</p>
-                    <p class="userLogin" id="userLogin"></p>
+                <div class="col-lg-4 welcome">
+                    EtuStack!
                 </div>
-                <div class="col-lg-6">
-
+                <div class="col-lg-8">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Link</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table_api">
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row pt-5 discussion-title">
@@ -218,6 +229,22 @@
             console.log("i want to jump to group.html with value:"+ idGroupe);
             window.location.href="http://localhost:8080/WebProjet/group.html?nameG=" + idGroupe;
         }
+
+        var url_api = 'https://newsapi.org/v2/top-headlines?country=fr&category=science&apiKey=f28ae82d87974f04901f484e4f528d5e';  
+        var req = new Request(url_api);
+        fetch(req)
+            .then(function(response) {
+                response.json()
+				.then(function(rjson){
+                    console.log(rjson);
+                    var articles = rjson.articles;
+                    for(var i =0;i<2;i++){
+                        var html = '<tr><td>'+ articles[i].title+'</td><td><a href="'+articles[i].url+'">'+articles[i].url+'</a></td></tr>';
+                        $(".table_api").append(html);
+                    }    	
+				})
+				.catch(function(error){console.log("Authentification Parsing: "+error.message)});
+        })
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

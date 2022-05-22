@@ -3,7 +3,7 @@ package composant;
 
 public class Commentaire {
 	private static final long serialVersionUID = 1L; 
-	private int idC,idU,idP,nb_likes;
+	private int idC,idU,idP;
 	private String contenu, date,username;
 	
 	
@@ -35,12 +35,6 @@ public class Commentaire {
 	}
 	public void setIdP(int idP) {
 		this.idP = idP;
-	}
-	public int getNb_likes() {
-		return nb_likes;
-	}
-	public void setNb_likes(int nb_likes) {
-		this.nb_likes = nb_likes;
 	}
 	public String getContenu() {
 		return contenu;

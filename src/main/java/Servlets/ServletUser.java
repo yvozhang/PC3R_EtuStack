@@ -56,22 +56,21 @@ public class ServletUser extends HttpServlet {
 		String name = request.getParameter("name");   
 		String email = request.getParameter("email"); 
 		System.out.println("Servlet: email- "+ email);
-		String mdp = request.getParameter("mdp");
-		boolean isExist = false;
-	  
+		String mdp = request.getParameter("mdp");	
+		System.out.println("Servlet: mdp- "+ mdp);
 		user = ((UserDao)userDao).get(email);
-		String pseudo = user.getPseudo();
+
 		
 		if(name!=null) {
-			user = new User(name, email, mdp, null);
+			user = new User(name, email, mdp);
 			userDao.save(user);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			System.out.println("Inscription réussi : "+ name + " mdp: " + mdp+"email:"+email);
 			response.getWriter().write(gson.toJson("Réussi Inscription"));
-			
 		}else {
 			if(mdp.equals(user.getPassword())) {
+				String pseudo = user.getPseudo();
 				System.out.println("password correct");
 				HttpSession session=request.getSession();
 				session.setAttribute("user",pseudo);

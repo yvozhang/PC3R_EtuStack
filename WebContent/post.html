@@ -50,8 +50,6 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control-search me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-search" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -81,11 +79,11 @@
                             console.log("post.html get post's title:"+rjson.titre);
                             html +='</h4><p class="contenue-post p-5">';
                             html += rjson.contenu;
-                            html +='</p><p class= "buttom-post pt-5">Post à ';
+                            html +='</p><p class= "buttom-post">Post à ';
                             html +=rjson.date;
                             html +=' by ';
                             html += rjson.username;
-                            html += '</p></div>';
+                            html += '</p><hr></div>';
 
                             $(".col-posts").append(html);
 				    })
@@ -118,8 +116,6 @@
                                 html +=rjson[post].date;
                                 html +=' by ';
                                 html += rjson[post].username;
-                                html += '</p><p align="right">';
-                                html += rjson[post].nb_likes;
                                 html += '</p></div><hr>';
                                 $(".col-comentaire").append(html);
                             }else{
@@ -181,12 +177,22 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="container p-5">
+                    <div class="container pl-5 pr-5">
+                        <div class="row div-text-reponse pb-5">Post</div>
+                        <div class="row">
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="col-lg-8">
+                    <div class="container pb-5 pr-5">
                         <div class="row ">
                             <div class="col col-posts">
                             </div>
                         </div>
-                        <hr>
                     </div>
                 </div>
                 <div class="col col-lg-4">
@@ -194,7 +200,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="container p-5">
+                    <div class="container pl-5 pr-5">
+                        <div class="row div-text-reponse pb-5">Réponse</div>
                         <div class="row">
                             <div class="col col-comentaire">
                             </div>
@@ -222,6 +229,8 @@
         console.log("In page acceuil: sessionUser="+sessionUser);
         if(sessionUser != null){
             var html = '<button class="btn btn-connexion" type="button" ">'+ sessionUser+'</button>';
+            html += '<button class="btn btn-deconnexion" type="button" onclick="deconnexion()">Déconnexion</button>';
+
             $(".d-flex").append(html);
             console.log("sessionUser="+sessionUser)
 
@@ -234,6 +243,13 @@
             var html = '<button class="btn btn-connexion" type="button" onclick="gotoLogin()">Connexion</button>';
             $(".d-flex").append(html);
         }
+
+        // déconnexion
+        function deconnexion(){
+            sessionStorage.removeItem('user');
+            window.location.href="http://localhost:8080/WebProjet/acceuil.html"
+        }
+        
         var thisURL = document.URL;      
         var getval  = thisURL.split('?')[1];    
         var showval = getval.split("=")[1];  

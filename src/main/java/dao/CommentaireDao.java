@@ -32,7 +32,6 @@ public class CommentaireDao implements Dao<Commentaire>{
 				c = new Commentaire();
 				c.setIdU(rs.getInt("idU"));
 				c.setIdP(rs.getInt("idP"));
-				c.setNb_likes(rs.getInt("nb_likes"));
 				c.setContenu(rs.getString("contenu"));
 				c.setDate(rs.getString("date"));
 			}
@@ -51,7 +50,7 @@ public class CommentaireDao implements Dao<Commentaire>{
 	
 	//get all comments by post's title
 	public List<Commentaire> getAllCommentaire(String titre) {
-		String sql = "SELECT c.contenu, pseudo,c.date,nb_likes FROM posts p, users u, commentaire c where titre = '"
+		String sql = "SELECT c.contenu, pseudo,c.date FROM posts p, users u, commentaire c where titre = '"
 				+ titre +"' and c.idU=u.idU and p.idP=c.idP";		
 		Connection connection = DbConnection.getInstance();
 		Statement stmt;
@@ -64,7 +63,6 @@ public class CommentaireDao implements Dao<Commentaire>{
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				c = new Commentaire();
-				c.setNb_likes(rs.getInt("nb_likes"));
 				c.setContenu(rs.getString("contenu"));
 				c.setDate(rs.getString("date"));
 				c.setUsername(rs.getString("pseudo"));
@@ -98,7 +96,6 @@ public class CommentaireDao implements Dao<Commentaire>{
 				c.setIdC(rs.getInt("idC"));
 				c.setIdU(rs.getInt("idU"));
 				c.setIdP(rs.getInt("idP"));
-				c.setNb_likes(rs.getInt("nb_likes"));
 				c.setContenu(rs.getString("contenu"));
 				c.setDate(rs.getString("date"));
 				commentaires.add(c);
@@ -121,10 +118,9 @@ public class CommentaireDao implements Dao<Commentaire>{
 		t.setDate(dateFormat.format(d));
 		System.out.println("commentaire date="+ t.getDate());
 		
-		String sql = "INSERT INTO commentaire (`contenu`, `nb_likes`,`date`,`idU`,`idP`)"
+		String sql = "INSERT INTO commentaire (`contenu`,`date`,`idU`,`idP`)"
 				+ " VALUES"
 				+ " ('"+t.getContenu()+"',"
-				+ "'"+3+"',"
 				+ "'"+t.getDate()+"',"
 				+ "'"+t.getIdU()+"',"
 				+ "'"+t.getIdP()+"')";

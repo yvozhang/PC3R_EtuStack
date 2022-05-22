@@ -6,17 +6,16 @@ import java.io.Serializable;
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L; 
 	private int idU;
-	private String pseudo,email,password,status;
+	private String pseudo,email,password;
 
 	public User() {
 		
 	}
 	
-	public User(String pseudo,String email,String password,String status) {
+	public User(String pseudo,String email,String password) {
 		this.pseudo = pseudo;
 		this.email = email;
 		this.password = password;
-		this.status = status;
 	}
 	
 	public int getIdU() {
@@ -49,14 +48,6 @@ public class User implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public static long getSerialversionuid() {

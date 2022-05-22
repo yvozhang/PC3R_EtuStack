@@ -50,8 +50,6 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control-search me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-search" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -63,6 +61,8 @@
         console.log("In page acceuil: sessionUser="+sessionUser);
         if(sessionUser != null){
             var html = '<button class="btn btn-connexion" type="button" ">'+ sessionUser+'</button>';
+            html += '<button class="btn btn-deconnexion" type="button" onclick="deconnexion()">Déconnexion</button>';
+
             $(".d-flex").append(html);
             console.log("sessionUser="+sessionUser)
         }else{
@@ -160,6 +160,12 @@
                 history.go(-1);
             });
         });
+
+        // déconnexion
+        function deconnexion(){
+            sessionStorage.removeItem('user');
+            window.location.href="http://localhost:8080/WebProjet/acceuil.html"
+        }
 
         var sessionUser = sessionStorage.getItem('user');
         var thisURL = document.URL;      
