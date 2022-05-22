@@ -191,66 +191,68 @@
         //load les posts de category que le user a choisi
         $(document).ready(function () {
             $('#selectC a').on('click', function () {
-                $('#allPosts').remove();
-                $('.allGroups').remove();
                 var idCategory= ($(this).text());
-                let url = 'ServletCategory?category='+idCategory;
-                console.log("fetch a "+url);
-                let headers = new Headers();
-                headers.set('Accept', 'application/json');
+                window.location.href="http://localhost:8080/WebProjet/category.html?category="+idCategory;
+                //$('#allPosts').remove();
+                //$('.allGroups').remove();
+                //var idCategory= ($(this).text());
+                //let url = 'ServletPost?category='+idCategory;
+                // console.log("fetch a "+url);
+                // let headers = new Headers();
+                // headers.set('Accept', 'application/json');
 
-                fetch(url, {method : "post", headers, mode : "same-origin"})
-                        .then(function(response){
-                            response.json()
-                            .then(function(rjson){
-                                console.log(rjson);
-                                for(post in rjson){
-                                    var html = '<div class="list-group allPosts" id="allPosts"><a href="#" id ="';    
-                                    html+=rjson[post].titre;
-                                    html+='"class="list-group-item list-group-item-success" onclick="showPost(this.id)"><h4 class="list-group-item-heading">';
-                                    html += rjson[post].titre;
-                                    console.log("html get post's title:"+rjson[post].titre);
-                                    html +='</h4></a><h4 class="list-group-item-text">';
-                                    html += rjson[post].contenu;
-                                    html += '</h4><h6>';
-                                    html += rjson[post].idU;
-                                    html += '</h6></div>';
-                                    $(".col-posts").append(html);
-                                }		
-                            })
-                            .catch(function(error){console.log("Authentification Parsing: "+error.message)});
-                        })
-                        .catch(function(error){
-                            console.log("Authentification Fetching: "+error.message);
-                        })
+                // fetch(url, {method : "post", headers, mode : "same-origin"})
+                //         .then(function(response){
+                //             response.json()
+                //             .then(function(rjson){
+                //                 console.log(rjson);
+                //                 for(post in rjson){
+                //                     var html = '<div class="list-group allPosts" id="allPosts"><a href="#" id ="';    
+                //                     html+=rjson[post].titre;
+                //                     html+='"class="list-group-item list-group-item-success" onclick="showPost(this.id)"><h4 class="list-group-item-heading">';
+                //                     html += rjson[post].titre;
+                //                     console.log("html get post's title:"+rjson[post].titre);
+                //                     html +='</h4></a><h4 class="list-group-item-text">';
+                //                     html += rjson[post].contenu;
+                //                     html += '</h4><h6>';
+                //                     html += rjson[post].idU;
+                //                     html += '</h6></div>';
+                //                     $(".col-posts").append(html);
+                //                 }		
+                //             })
+                //             .catch(function(error){console.log("Authentification Parsing: "+error.message)});
+                //         })
+                //         .catch(function(error){
+                //             console.log("Authentification Fetching: "+error.message);
+                //         })
                 
-                let urlG = 'ServletGroupe?category='+idCategory;
-                console.log("fetch a "+url);
-                let headersG = new Headers();
-                headers.set('Accept', 'application/json');
+                // let urlG = 'ServletGroupe?category='+idCategory;
+                // console.log("fetch a "+url);
+                // let headersG = new Headers();
+                // headers.set('Accept', 'application/json');
 
-                fetch(urlG, {method : "post", headersG, mode : "same-origin"})
-                        .then(function(response){
-                            response.json()
-                            .then(function(rjson){
-                                console.log(rjson);
-                                for(group in rjson){
-                                    var html = '<div class="list-group allGroups" id="allGroups"><a href="#" id ="';    
-                                    html+=rjson[group].nom;
-                                    html+='"class="list-group-item list-group-item-success" onclick="showGroup(this.id)"><h4 class="list-group-item-heading">';
-                                    html += rjson[group].nom;
-                                    console.log("html get groupe's name:"+rjson[group].nom);
-                                    html +='</h4></a><h4 class="list-group-item-text">';
-                                    html += rjson[group].category;
-                                    html += '</h4></div>';
-                                    $(".col-groupes").append(html);
-                                }		
-                            })
-                            .catch(function(error){console.log("Authentification Parsing: "+error.message)});
-                        })
-                        .catch(function(error){
-                            console.log("Authentification Fetching: "+error.message);
-                        })
+                // fetch(urlG, {method : "post", headersG, mode : "same-origin"})
+                //         .then(function(response){
+                //             response.json()
+                //             .then(function(rjson){
+                //                 console.log(rjson);
+                //                 for(group in rjson){
+                //                     var html = '<div class="list-group allGroups" id="allGroups"><a href="#" id ="';    
+                //                     html+=rjson[group].nom;
+                //                     html+='"class="list-group-item list-group-item-success" onclick="showGroup(this.id)"><h4 class="list-group-item-heading">';
+                //                     html += rjson[group].nom;
+                //                     console.log("html get groupe's name:"+rjson[group].nom);
+                //                     html +='</h4></a><h4 class="list-group-item-text">';
+                //                     html += rjson[group].category;
+                //                     html += '</h4></div>';
+                //                     $(".col-groupes").append(html);
+                //                 }		
+                //             })
+                //             .catch(function(error){console.log("Authentification Parsing: "+error.message)});
+                //         })
+                //         .catch(function(error){
+                //             console.log("Authentification Fetching: "+error.message);
+                //         })
 
                 
             });

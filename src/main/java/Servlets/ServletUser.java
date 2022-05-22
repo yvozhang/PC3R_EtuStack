@@ -68,7 +68,7 @@ public class ServletUser extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			System.out.println("Inscription réussi : "+ name + " mdp: " + mdp+"email:"+email);
-			response.getWriter().write(gson.toJson("Réussi"));
+			response.getWriter().write(gson.toJson("Réussi Inscription"));
 			
 		}else {
 			if(mdp.equals(user.getPassword())) {
